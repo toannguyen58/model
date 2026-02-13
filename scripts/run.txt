@@ -1,0 +1,206 @@
+================================================================================
+  UVCRS - KBB Car Data Scraper
+  Run Instructions
+================================================================================
+
+PREREQUISITES
+-------------
+- Python 3.12+
+- uv (Python package manager)
+- Google Chrome browser installed
+
+INSTALL DEPENDENCIES
+--------------------
+uv sync
+
+
+================================================================================
+  SINGLE MODEL
+================================================================================
+
+# Scrape specs only (default example: Audi A3 2017)
+uv run python -m kbb_scraper
+
+# Scrape specs for a specific car
+uv run python -m kbb_scraper --make Toyota --model Camry --year 2020
+
+# Scrape specs + reviews for a specific car
+uv run python -m kbb_scraper --make Toyota --model Camry --year 2020 --with-reviews
+
+# Scrape from a direct KBB URL
+uv run python -m kbb_scraper --url "https://www.kbb.com/toyota/camry/2020/specs/"
+
+# Scrape from URL with reviews
+uv run python -m kbb_scraper --url "https://www.kbb.com/toyota/camry/2020/specs/" --with-reviews
+
+# Show browser window (for debugging)
+uv run python -m kbb_scraper --make Toyota --model Camry --year 2020 --no-headless
+
+
+================================================================================
+  TEST MODE (5 brands, 12 models, 3 years = 36 valid combinations)
+================================================================================
+
+# Specs only
+uv run python -m kbb_scraper --test
+
+# Specs + reviews
+uv run python -m kbb_scraper --test --with-reviews
+
+# Specs + 4-table DB export
+uv run python -m kbb_scraper --test --export-db
+
+# Specs + reviews + 4-table DB export
+uv run python -m kbb_scraper --test --with-reviews --export-db
+
+# With visible browser
+uv run python -m kbb_scraper --test --no-headless
+
+
+================================================================================
+  FULL BATCH (38 brands, 412 models = ~5,380 valid combinations)
+================================================================================
+
+# Specs only
+uv run python -m kbb_scraper --batch
+
+# Specs + reviews
+uv run python -m kbb_scraper --batch --with-reviews
+
+# Specs + reviews + 4-table DB export
+uv run python -m kbb_scraper --batch --with-reviews --export-db
+
+
+================================================================================
+  BATCH FILE (custom list of models)
+================================================================================
+
+# Create a JSON file (e.g. my_cars.json) with this format:
+# [
+#   {"make": "Toyota", "model": "Camry", "year": "2020"},
+#   {"make": "Honda", "model": "Civic", "year": "2021"}
+# ]
+
+# Run from batch file
+uv run python -m kbb_scraper --batch-file my_cars.json
+
+# With reviews
+uv run python -m kbb_scraper --batch-file my_cars.json --with-reviews
+
+
+================================================================================
+  PARALLEL EXECUTION (recommended for large batches)
+================================================================================
+
+# Generate batch files only (dry run, 4 workers)
+uv run python run_parallel.py --test --workers 4
+
+# Generate AND launch 4 parallel workers
+uv run python run_parallel.py --test --workers 4 --run
+
+# Full dictionary with 8 workers + reviews + DB export
+uv run python run_parallel.py --batch --workers 8 --run --with-reviews --export-db
+
+# Merge results from previous parallel run (without re-scraping)
+uv run python run_parallel.py --merge-only
+
+# Parallel with visible browsers
+uv run python run_parallel.py --test --workers 4 --run --no-headless
+
+
+================================================================================
+  OUTPUT FILES
+================================================================================
+
+Specs (CSV):
+  data/csv/all_cars.csv
+    - One row per trim, columns: make, model, year, bodytype, trim, price,
+      mpg_city, mpg_hwy, mpg_comb, hp, torque, engine, drivetrain, features...
+
+Reviews (CSV):
+  data/csv/all_reviews.csv
+    - One row per make+model+year, columns: make, model, year,
+      consumer_overall_rating, consumer_review_count, consumer_recommend_pct,
+      star_5_pct, star_4_pct, star_3_pct, star_2_pct, star_1_pct,
+      rating_value, rating_performance, rating_quality,
+      rating_comfort, rating_reliability, rating_styling,
+      expert_rating, expert_ranking, pros, cons
+
+Reviews (JSON backup):
+  data/raw/{Make}_{Model}_reviews.json
+    - Per make+model file with years dict (same data, structured format)
+
+4-Table DB Export (JSON, when --export-db is used):
+  data/processed/4table/
+    - vehicle.json          (brand, model, year, trim, body_type, engine, msrp)
+    - vehicle_specs.json    (hp, torque, 0-60, mpg, weight, wheelbase, cargo)
+    - vehicle_features.json (leather, heated seats, nav, parking assist, etc.)
+    - vehicle_scores.json   (placeholder for future scoring)
+    - combined_4table.json  (all tables in one file)
+    - metadata.json
+
+Parallel worker outputs (before merge):
+  data/workers/worker_N/     (isolated per-worker output)
+  data/batches/batch_*.json  (batch input files)
+  data/batches/worker_*.log  (per-worker log files)
+
+Logs:
+  logs/scraper.log   (all activity)
+  logs/errors.log    (errors only)
+
+
+================================================================================
+  CLI FLAGS REFERENCE
+================================================================================
+
+  --make TEXT          Car make (e.g. Toyota)
+  --model TEXT         Car model (e.g. Camry)
+  --year TEXT          Model year (e.g. 2020)
+  --url TEXT           Direct KBB URL to scrape
+  --batch-file PATH   JSON file with list of models
+  --test              Test mode (5 brands, 12 models, 36 combinations)
+  --batch             Full dictionary (38 brands, 412 models, ~5,380 combinations)
+  --with-reviews      Scrape consumer reviews + expert review
+  --export-db         Export to 4-table database format
+  --output-dir PATH   Custom output directory
+  --no-headless       Show browser window (for debugging)
+
+Parallel runner (run_parallel.py) additional flags:
+  --workers N         Number of parallel workers (default: 4)
+  --run               Launch workers immediately
+  --merge-only        Merge existing worker outputs only
+
+
+================================================================================
+  VEHICLE DICTIONARY
+================================================================================
+
+YEAR AVAILABILITY
+  Each model has a (start_year, end_year) range so that discontinued and
+  unreleased model/year combos are automatically skipped.  Examples:
+    - Tesla Cybertruck:  2024 only
+    - Ford Focus:        2000-2018 (discontinued)
+    - Tesla Model-3:     2017-2024`
+    - BMW M4:            2015-2024
+    - Dodge Dart:        2013-2016
+
+Test dictionary (VEHICLES_TEST):
+  Toyota:    Corolla (2000-2024), RAV4 (2000-2024)
+  Honda:     Civic (2000-2024), CR-V (2000-2024)
+  Ford:      F-150 (2000-2024), Mustang (2000-2024), Explorer (2000-2024)
+  BMW:       3-Series (2000-2024), M4 (2015-2024), X5 (2000-2024)
+  Audi:      A3 (2006-2024), Q5 (2009-2024)
+  Test years: 2017, 2020, 2023 (intersected with each model's range)
+
+Full dictionary (VEHICLES):
+  38 brands, 412 models, ~5,380 valid year combinations
+  American:  Ford, Chevrolet, GMC, Dodge, Jeep, Chrysler, Tesla, Cadillac,
+             Lincoln, Buick
+  Japanese:  Toyota, Honda, Nissan, Mazda, Subaru, Lexus, Infiniti, Acura,
+             Mitsubishi
+  German:    BMW, Mercedes-Benz, Audi, Volkswagen, Porsche
+  Korean:    Hyundai, Kia, Genesis
+  British:   Land-Rover, Jaguar, Mini
+  Italian:   Alfa-Romeo, Maserati, Fiat
+  Swedish:   Volvo
+  Other:     Ram, Rivian, Lucid, Polestar

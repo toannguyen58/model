@@ -1,0 +1,91 @@
+{
+  "make": "Toyota",
+  "model": "RAV4",
+  "years": {
+    "2017": {
+      "make": "Toyota",
+      "model": "RAV4",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-11T12:25:38.236770",
+      "consumer_review": {
+        "overall_rating": 4.4,
+        "review_count": 340,
+        "recommend_percentage": 80,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 3.0,
+          "performance": 1.0,
+          "quality": 5.0,
+          "comfort": 3.0,
+          "reliability": 5.0,
+          "styling": 5.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.5,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2020": {
+      "make": "Toyota",
+      "model": "RAV4",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-11T12:26:48.363350",
+      "consumer_review": {
+        "overall_rating": 3.6,
+        "review_count": 391,
+        "recommend_percentage": 60,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 1.0,
+          "performance": 1.0,
+          "quality": 1.0,
+          "comfort": 1.0,
+          "reliability": 1.0,
+          "styling": 2.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.8,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2023": {
+      "make": "Toyota",
+      "model": "RAV4",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-11T12:22:04.689833",
+      "consumer_review": {
+        "overall_rating": 3.6,
+        "review_count": 391,
+        "recommend_percentage": 60,
+        "star_distribution": {
+          "5": 43,
+          "4": 17,
+          "3": 14,
+          "2": 14,
+          "1": 12
+        },
+        "category_ratings": {
+          "value": 1.0,
+          "performance": 1.0,
+          "quality": 1.0,
+          "comfort": 1.0,
+          "reliability": 1.0,
+          "styling": 2.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.6,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    }
+  },
+  "last_updated": "2026-02-11T12:26:48.364131"
+}

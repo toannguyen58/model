@@ -1,0 +1,85 @@
+{
+  "make": "BMW",
+  "model": "M4",
+  "years": {
+    "2017": {
+      "make": "BMW",
+      "model": "M4",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-11T12:27:35.077251",
+      "consumer_review": {
+        "overall_rating": 3.7,
+        "review_count": 19,
+        "recommend_percentage": 68,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 1.0,
+          "performance": 2.0,
+          "quality": 1.0,
+          "comfort": 2.0,
+          "reliability": 1.0,
+          "styling": 2.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.2,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2020": {
+      "make": "BMW",
+      "model": "M4",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-11T12:22:27.017685",
+      "consumer_review": {
+        "overall_rating": 3.7,
+        "review_count": 19,
+        "recommend_percentage": 68,
+        "star_distribution": {
+          "5": 68,
+          "4": 0,
+          "3": 0,
+          "2": 0,
+          "1": 32
+        },
+        "category_ratings": {
+          "value": 1.0,
+          "performance": 2.0,
+          "quality": 1.0,
+          "comfort": 2.0,
+          "reliability": 1.0,
+          "styling": 2.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.1,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2023": {
+      "make": "BMW",
+      "model": "M4",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-11T12:23:40.290913",
+      "consumer_review": {
+        "overall_rating": 4.3,
+        "review_count": 7,
+        "recommend_percentage": 80,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 1.0,
+          "performance": 1.0,
+          "quality": 1.0,
+          "comfort": 1.0,
+          "reliability": 1.0,
+          "styling": 1.0
+        }
+      }
+    }
+  },
+  "last_updated": "2026-02-11T12:27:35.077354"
+}

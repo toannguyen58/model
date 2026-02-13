@@ -1,0 +1,25 @@
+{
+  "make": "Audi",
+  "model": "RS3",
+  "years": {
+    "2017": {
+      "make": "Audi",
+      "model": "RS3",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-10T21:19:02.065404"
+    },
+    "2020": {
+      "make": "Audi",
+      "model": "RS3",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-10T21:20:17.966156"
+    },
+    "2023": {
+      "make": "Audi",
+      "model": "RS3",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-10T21:21:33.582149"
+    }
+  },
+  "last_updated": "2026-02-10T21:21:33.582481"
+}

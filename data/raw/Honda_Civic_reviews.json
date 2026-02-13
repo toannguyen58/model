@@ -1,0 +1,85 @@
+{
+  "make": "Honda",
+  "model": "Civic",
+  "years": {
+    "2017": {
+      "make": "Honda",
+      "model": "Civic",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-11T12:24:22.873621",
+      "consumer_review": {
+        "overall_rating": 4.7,
+        "review_count": 685,
+        "recommend_percentage": 93,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 2.0,
+          "performance": 3.0,
+          "quality": 2.0,
+          "comfort": 4.0,
+          "reliability": 1.0,
+          "styling": 4.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.7,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2020": {
+      "make": "Honda",
+      "model": "Civic",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-11T12:26:37.599305",
+      "consumer_review": {
+        "overall_rating": 4.7,
+        "review_count": 685,
+        "recommend_percentage": 93,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 2.0,
+          "performance": 3.0,
+          "quality": 2.0,
+          "comfort": 4.0,
+          "reliability": 1.0,
+          "styling": 4.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.6,
+        "ranking": "#1 in Best Small Cars of 2020",
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2023": {
+      "make": "Honda",
+      "model": "Civic",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-11T12:27:49.792184",
+      "consumer_review": {
+        "overall_rating": 3.8,
+        "review_count": 64,
+        "recommend_percentage": 65,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 4.0,
+          "performance": 3.0,
+          "quality": 1.0,
+          "comfort": 4.0,
+          "reliability": 1.0,
+          "styling": 5.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.7,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    }
+  },
+  "last_updated": "2026-02-11T12:27:49.793130"
+}

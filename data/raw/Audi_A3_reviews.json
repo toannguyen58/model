@@ -1,0 +1,91 @@
+{
+  "make": "Audi",
+  "model": "A3",
+  "years": {
+    "2017": {
+      "make": "Audi",
+      "model": "A3",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-11T12:22:39.544881",
+      "consumer_review": {
+        "overall_rating": 4.0,
+        "review_count": 43,
+        "recommend_percentage": 70,
+        "star_distribution": {
+          "5": 65,
+          "4": 12,
+          "3": 2,
+          "2": 5,
+          "1": 16
+        },
+        "category_ratings": {
+          "value": 2.0,
+          "performance": 1.0,
+          "quality": 2.0,
+          "comfort": 3.0,
+          "reliability": 2.0,
+          "styling": 2.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.7,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2020": {
+      "make": "Audi",
+      "model": "A3",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-11T12:23:54.001091",
+      "consumer_review": {
+        "overall_rating": 4.0,
+        "review_count": 43,
+        "recommend_percentage": 70,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 2.0,
+          "performance": 1.0,
+          "quality": 2.0,
+          "comfort": 3.0,
+          "reliability": 2.0,
+          "styling": 2.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.6,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2023": {
+      "make": "Audi",
+      "model": "A3",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-11T12:25:04.020746",
+      "consumer_review": {
+        "overall_rating": 5.0,
+        "review_count": 2,
+        "recommend_percentage": 100,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 5.0,
+          "performance": 5.0,
+          "quality": 5.0,
+          "comfort": 5.0,
+          "reliability": 5.0,
+          "styling": 5.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.6,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    }
+  },
+  "last_updated": "2026-02-11T12:25:04.021317"
+}

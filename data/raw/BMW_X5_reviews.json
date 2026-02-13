@@ -1,0 +1,85 @@
+{
+  "make": "BMW",
+  "model": "X5",
+  "years": {
+    "2017": {
+      "make": "BMW",
+      "model": "X5",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-11T12:24:49.991526",
+      "consumer_review": {
+        "overall_rating": 4.3,
+        "review_count": 59,
+        "recommend_percentage": 80,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 5.0,
+          "performance": 5.0,
+          "quality": 5.0,
+          "comfort": 5.0,
+          "reliability": 5.0,
+          "styling": 5.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.6,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2020": {
+      "make": "BMW",
+      "model": "X5",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-11T12:25:59.899558",
+      "consumer_review": {
+        "overall_rating": 4.3,
+        "review_count": 50,
+        "recommend_percentage": 80,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 5.0,
+          "performance": 4.0,
+          "quality": 5.0,
+          "comfort": 5.0,
+          "reliability": 4.0,
+          "styling": 3.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.8,
+        "ranking": "#1 in Best Midsize Luxury SUVs of 2020",
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2023": {
+      "make": "BMW",
+      "model": "X5",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-11T12:27:11.181351",
+      "consumer_review": {
+        "overall_rating": 4.3,
+        "review_count": 50,
+        "recommend_percentage": 80,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 5.0,
+          "performance": 4.0,
+          "quality": 5.0,
+          "comfort": 5.0,
+          "reliability": 4.0,
+          "styling": 3.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.7,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    }
+  },
+  "last_updated": "2026-02-11T12:27:11.182301"
+}

@@ -1,0 +1,17 @@
+[project]
+name = "uvcrs"
+version = "0.1.0"
+description = "KBB vehicle specifications and reviews scraper with parallel execution support"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "ipykernel>=7.2.0",
+    "lxml>=6.0.2",
+    "pandas>=3.0.0",
+    "pandas-stubs~=3.0.0",
+    "requests>=2.32.5",
+    "rich>=14.3.1",
+    "seaborn>=0.13.2",
+    "selenium>=4.40.0",
+    "webdriver-manager>=4.0.0",
+]

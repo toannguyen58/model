@@ -1,0 +1,91 @@
+{
+  "make": "Toyota",
+  "model": "Corolla",
+  "years": {
+    "2017": {
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-11T12:22:05.162261",
+      "consumer_review": {
+        "overall_rating": 4.3,
+        "review_count": 231,
+        "recommend_percentage": 83,
+        "star_distribution": {
+          "5": 66,
+          "4": 18,
+          "3": 7,
+          "2": 2,
+          "1": 7
+        },
+        "category_ratings": {
+          "value": 5.0,
+          "performance": 5.0,
+          "quality": 5.0,
+          "comfort": 5.0,
+          "reliability": 5.0,
+          "styling": 4.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.2,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2020": {
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-11T12:23:17.239137",
+      "consumer_review": {
+        "overall_rating": 4.1,
+        "review_count": 99,
+        "recommend_percentage": 77,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 1.0,
+          "performance": 1.0,
+          "quality": 1.0,
+          "comfort": 1.0,
+          "reliability": 1.0,
+          "styling": 5.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.6,
+        "ranking": "#1 in Best Small Cars of 2020",
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2023": {
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-11T12:24:28.113690",
+      "consumer_review": {
+        "overall_rating": 4.1,
+        "review_count": 99,
+        "recommend_percentage": 77,
+        "star_distribution": {},
+        "category_ratings": {
+          "value": 1.0,
+          "performance": 1.0,
+          "quality": 1.0,
+          "comfort": 1.0,
+          "reliability": 1.0,
+          "styling": 5.0
+        }
+      },
+      "expert_review": {
+        "expert_rating": 4.4,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    }
+  },
+  "last_updated": "2026-02-11T12:24:28.115479"
+}

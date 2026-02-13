@@ -1,0 +1,43 @@
+{
+  "make": "Ford",
+  "model": "F-150",
+  "years": {
+    "2017": {
+      "make": "Ford",
+      "model": "F-150",
+      "year": "2017",
+      "scrape_timestamp": "2026-02-11T12:24:37.913328",
+      "expert_review": {
+        "expert_rating": 4.5,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2020": {
+      "make": "Ford",
+      "model": "F-150",
+      "year": "2020",
+      "scrape_timestamp": "2026-02-11T12:25:54.842447",
+      "expert_review": {
+        "expert_rating": 4.4,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    },
+    "2023": {
+      "make": "Ford",
+      "model": "F-150",
+      "year": "2023",
+      "scrape_timestamp": "2026-02-11T12:27:06.656620",
+      "expert_review": {
+        "expert_rating": 4.7,
+        "ranking": null,
+        "pros": [],
+        "cons": []
+      }
+    }
+  },
+  "last_updated": "2026-02-11T12:27:06.657547"
+}

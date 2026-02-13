@@ -1,0 +1,697 @@
+2026-02-09 12:23:33,674 [ERROR] kbb_scraper.scrapers.kbb_scraper:312: Error selecting body type 'Coupe': Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: unable to send message to renderer
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e83c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x0000000100837e40 cxxbridge1$string$len + 324
+4   chromedriver                        0x0000000100836418 chromedriver + 222232
+5   chromedriver                        0x0000000100837214 chromedriver + 225812
+6   chromedriver                        0x0000000100852dc4 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 92808
+7   chromedriver                        0x0000000100853604 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 94920
+8   chromedriver                        0x0000000100856d00 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 108996
+9   chromedriver                        0x0000000100856db8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 109180
+10  chromedriver                        0x0000000100897968 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 374316
+11  chromedriver                        0x00000001008d6fe8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 634028
+12  chromedriver                        0x000000010088c07c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+13  chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+14  chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+15  chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+16  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+17  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+18  chromedriver                        0x0000000100d5a194 cxxbridge1$str$ptr + 2994048
+19  chromedriver                        0x0000000100d5a310 cxxbridge1$str$ptr + 2994428
+20  chromedriver                        0x0000000100d6b85c cxxbridge1$str$ptr + 3065416
+21  libsystem_pthread.dylib             0x0000000199183c0c _pthread_start + 136
+22  libsystem_pthread.dylib             0x000000019917eb80 thread_start + 8
+
+2026-02-09 12:23:34,109 [ERROR] kbb_scraper.scrapers.reviews_scraper:89: Error navigating to https://www.kbb.com/ford/mustang/2020/consumer-reviews/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,110 [ERROR] kbb_scraper.scrapers.reviews_scraper:89: Error navigating to https://www.kbb.com/ford/mustang/2020/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,112 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/ford/mustang/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,112 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 Ford Mustang
+2026-02-09 12:23:34,113 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/ford/explorer/2017/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,113 [ERROR] kbb_scraper:28: No bodytypes data in results for 2017 Ford Explorer
+2026-02-09 12:23:34,114 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/ford/explorer/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,114 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 Ford Explorer
+2026-02-09 12:23:34,116 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/ford/explorer/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,116 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 Ford Explorer
+2026-02-09 12:23:34,117 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/3-series/2017/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,117 [ERROR] kbb_scraper:28: No bodytypes data in results for 2017 BMW 3-Series
+2026-02-09 12:23:34,118 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/3-series/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,118 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 BMW 3-Series
+2026-02-09 12:23:34,120 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/3-series/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,122 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 BMW 3-Series
+2026-02-09 12:23:34,122 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/5-series/2017/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,123 [ERROR] kbb_scraper:28: No bodytypes data in results for 2017 BMW 5-Series
+2026-02-09 12:23:34,124 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/5-series/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,124 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 BMW 5-Series
+2026-02-09 12:23:34,125 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/5-series/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,126 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 BMW 5-Series
+2026-02-09 12:23:34,127 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/x5/2017/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,127 [ERROR] kbb_scraper:28: No bodytypes data in results for 2017 BMW X5
+2026-02-09 12:23:34,128 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/x5/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,128 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 BMW X5
+2026-02-09 12:23:34,129 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/bmw/x5/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,129 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 BMW X5
+2026-02-09 12:23:34,130 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/a3/2017/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,130 [ERROR] kbb_scraper:28: No bodytypes data in results for 2017 Audi A3
+2026-02-09 12:23:34,131 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/a3/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,132 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 Audi A3
+2026-02-09 12:23:34,133 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/a3/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,133 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 Audi A3
+2026-02-09 12:23:34,134 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/a4/2017/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,135 [ERROR] kbb_scraper:28: No bodytypes data in results for 2017 Audi A4
+2026-02-09 12:23:34,136 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/a4/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,136 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 Audi A4
+2026-02-09 12:23:34,137 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/a4/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,137 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 Audi A4
+2026-02-09 12:23:34,137 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/q5/2017/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,137 [ERROR] kbb_scraper:28: No bodytypes data in results for 2017 Audi Q5
+2026-02-09 12:23:34,138 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/q5/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,138 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 Audi Q5
+2026-02-09 12:23:34,139 [ERROR] kbb_scraper.scrapers.kbb_scraper:66: Error navigating to https://www.kbb.com/audi/q5/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000100d73928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100d6bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x000000010084e640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x000000010088b3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x00000001008b41cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x00000001008b35b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x000000010081b668 chromedriver + 112232
+7   chromedriver                        0x0000000100d32884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000100d35fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000100d17578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000100d36850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000100d07640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001008192ac chromedriver + 103084
+13  dyld                                0x0000000198de2b98 start + 6076
+
+2026-02-09 12:23:34,146 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 Audi Q5
+2026-02-09 16:55:05,259 [ERROR] kbb_scraper.scrapers.kbb_scraper:136: Error finding body types: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: unable to send message to renderer
+  (Session info: chrome=144.0.7559.133); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000102f07928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000102effc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x00000001029e283c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x00000001029cbe40 cxxbridge1$string$len + 324
+4   chromedriver                        0x00000001029ca418 chromedriver + 222232
+5   chromedriver                        0x00000001029cb214 chromedriver + 225812
+6   chromedriver                        0x00000001029e6dc4 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 92808
+7   chromedriver                        0x00000001029e7604 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 94920
+8   chromedriver                        0x00000001029ead00 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 108996
+9   chromedriver                        0x00000001029eadb8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 109180
+10  chromedriver                        0x0000000102a2b968 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 374316
+11  chromedriver                        0x0000000102a6afe8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 634028
+12  chromedriver                        0x0000000102a2007c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+13  chromedriver                        0x0000000102ec6884 cxxbridge1$str$ptr + 2831984
+14  chromedriver                        0x0000000102ec9fcc cxxbridge1$str$ptr + 2846136
+15  chromedriver                        0x0000000102eab578 cxxbridge1$str$ptr + 2720612
+16  chromedriver                        0x0000000102eca850 cxxbridge1$str$ptr + 2848316
+17  chromedriver                        0x0000000102e9b640 cxxbridge1$str$ptr + 2655276
+18  chromedriver                        0x0000000102eee194 cxxbridge1$str$ptr + 2994048
+19  chromedriver                        0x0000000102eee310 cxxbridge1$str$ptr + 2994428
+20  chromedriver                        0x0000000102eff85c cxxbridge1$str$ptr + 3065416
+21  libsystem_pthread.dylib             0x000000019579bbc8 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000195796b80 thread_start + 8
+
+2026-02-09 16:55:06,273 [ERROR] kbb_scraper.scrapers.kbb_scraper:569: Error scraping current body type data: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000102f07928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000102effc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x00000001029e2640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x0000000102a1f3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x0000000102a481cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x0000000102a475b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x00000001029af668 chromedriver + 112232
+7   chromedriver                        0x0000000102ec6884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000102ec9fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000102eab578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000102eca850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000102e9b640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001029ad2ac chromedriver + 103084
+13  dyld                                0x00000001953fab98 start + 6076
+
+2026-02-09 16:55:06,285 [ERROR] kbb_scraper.scrapers.kbb_scraper:65: Error navigating to https://www.kbb.com/audi/q5/2020/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000102f07928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000102effc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x00000001029e2640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x0000000102a1f3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x0000000102a481cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x0000000102a475b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x00000001029af668 chromedriver + 112232
+7   chromedriver                        0x0000000102ec6884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000102ec9fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000102eab578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000102eca850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000102e9b640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001029ad2ac chromedriver + 103084
+13  dyld                                0x00000001953fab98 start + 6076
+
+2026-02-09 16:55:06,286 [ERROR] kbb_scraper:28: No bodytypes data in results for 2020 Audi Q5
+2026-02-09 16:55:06,287 [ERROR] kbb_scraper.scrapers.kbb_scraper:65: Error navigating to https://www.kbb.com/audi/q5/2023/specs/: Message: invalid session id; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+0   chromedriver                        0x0000000102f07928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000102effc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x00000001029e2640 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 74500
+3   chromedriver                        0x0000000102a1f3e8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
+4   chromedriver                        0x0000000102a481cc _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 491152
+5   chromedriver                        0x0000000102a475b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 488060
+6   chromedriver                        0x00000001029af668 chromedriver + 112232
+7   chromedriver                        0x0000000102ec6884 cxxbridge1$str$ptr + 2831984
+8   chromedriver                        0x0000000102ec9fcc cxxbridge1$str$ptr + 2846136
+9   chromedriver                        0x0000000102eab578 cxxbridge1$str$ptr + 2720612
+10  chromedriver                        0x0000000102eca850 cxxbridge1$str$ptr + 2848316
+11  chromedriver                        0x0000000102e9b640 cxxbridge1$str$ptr + 2655276
+12  chromedriver                        0x00000001029ad2ac chromedriver + 103084
+13  dyld                                0x00000001953fab98 start + 6076
+
+2026-02-09 16:55:06,287 [ERROR] kbb_scraper:28: No bodytypes data in results for 2023 Audi Q5
+2026-02-09 22:55:03,200 [ERROR] kbb_scraper.scrapers.reviews_scraper:86: Timeout loading: https://www.kbb.com/ford/mustang/2017/consumer-reviews/
+2026-02-10 21:40:34,108 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 21:48:22,200 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 21:53:25,535 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:09:19,431 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:10:58,988 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:11:19,916 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:13:15,499 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:15:08,986 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:16:02,784 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:17:08,975 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:19:06,900 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:21:00,956 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:23:01,548 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:24:56,720 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:26:50,534 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:28:53,119 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:30:47,981 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:32:43,848 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:34:43,906 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:36:41,611 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:38:36,366 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:40:37,197 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:42:29,578 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:42:44,732 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:44:22,206 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:46:16,198 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:47:47,610 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:48:12,702 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:50:12,361 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:52:09,840 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:54:11,512 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:56:04,194 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:58:01,967 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 22:59:54,940 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:02:02,497 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:03:22,498 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: session not created
+from disconnected: unable to connect to renderer; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x000000010091b928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100913c04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x00000001003f683c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x0000000100430c1c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 313568
+4   chromedriver                        0x000000010042ca50 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 296724
+5   chromedriver                        0x0000000100428b7c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 280640
+6   chromedriver                        0x000000010046e3b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 565372
+7   chromedriver                        0x000000010046dde8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 563884
+8   chromedriver                        0x000000010043407c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+9   chromedriver                        0x00000001008da884 cxxbridge1$str$ptr + 2831984
+10  chromedriver                        0x00000001008ddfcc cxxbridge1$str$ptr + 2846136
+11  chromedriver                        0x00000001008bf578 cxxbridge1$str$ptr + 2720612
+12  chromedriver                        0x00000001008de850 cxxbridge1$str$ptr + 2848316
+13  chromedriver                        0x00000001008af640 cxxbridge1$str$ptr + 2655276
+14  chromedriver                        0x0000000100902194 cxxbridge1$str$ptr + 2994048
+15  chromedriver                        0x0000000100902310 cxxbridge1$str$ptr + 2994428
+16  chromedriver                        0x000000010091385c cxxbridge1$str$ptr + 3065416
+17  libsystem_pthread.dylib             0x000000019579bbc8 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000195796b80 thread_start + 8
+
+2026-02-10 23:04:02,488 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:04:46,152 [ERROR] kbb_scraper.scrapers.kbb_scraper:136: Error finding body types: HTTPConnectionPool(host='localhost', port=55667): Read timed out. (read timeout=120)
+2026-02-10 23:05:17,876 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:05:58,785 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:06:47,168 [ERROR] kbb_scraper.scrapers.kbb_scraper:571: Error scraping current body type data: HTTPConnectionPool(host='localhost', port=55667): Read timed out. (read timeout=120)
+2026-02-10 23:07:56,364 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:09:55,551 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:10:20,998 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:11:51,641 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:13:47,284 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:15:39,313 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:15:47,658 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: HTTPConnectionPool(host='localhost', port=52059): Read timed out. (read timeout=120)
+2026-02-10 23:16:47,248 [ERROR] kbb_scraper.scrapers.reviews_scraper:90: Error navigating to https://www.kbb.com/toyota/tacoma/2015/consumer-reviews/: HTTPConnectionPool(host='localhost', port=55667): Read timed out. (read timeout=120)
+2026-02-10 23:17:31,886 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:18:47,268 [ERROR] kbb_scraper.scrapers.reviews_scraper:90: Error navigating to https://www.kbb.com/toyota/tacoma/2015/: HTTPConnectionPool(host='localhost', port=55667): Read timed out. (read timeout=120)
+2026-02-10 23:19:23,142 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-10 23:21:11,754 [ERROR] kbb_scraper.scrapers.kbb_scraper:396: No spec table found
+2026-02-11 10:37:06,284 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: File is not a zip file
+2026-02-11 10:37:06,355 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: Service /Users/eric5805/.wdm/drivers/chromedriver/mac64/144.0.7559.133/chromedriver-mac-arm64/chromedriver unexpectedly exited. Status code was: -9
+
+2026-02-11 10:37:06,530 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: Service /Users/eric5805/.wdm/drivers/chromedriver/mac64/144.0.7559.133/chromedriver-mac-arm64/chromedriver unexpectedly exited. Status code was: -9
+
+2026-02-11 10:37:07,796 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: Service /Users/eric5805/.wdm/drivers/chromedriver/mac64/144.0.7559.133/chromedriver-mac-arm64/chromedriver unexpectedly exited. Status code was: -9
+
+2026-02-11 10:37:07,875 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: Service /Users/eric5805/.wdm/drivers/chromedriver/mac64/144.0.7559.133/chromedriver-mac-arm64/chromedriver unexpectedly exited. Status code was: -9
+
+2026-02-11 10:37:07,876 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: Service /Users/eric5805/.wdm/drivers/chromedriver/mac64/144.0.7559.133/chromedriver-mac-arm64/chromedriver unexpectedly exited. Status code was: -9
+
+2026-02-11 10:37:08,834 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: Service /Users/eric5805/.wdm/drivers/chromedriver/mac64/144.0.7559.133/chromedriver-mac-arm64/chromedriver unexpectedly exited. Status code was: -9
+
+2026-02-11 10:38:56,007 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: session not created
+from disconnected: unable to connect to renderer; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000103247928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x000000010323fc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x0000000102d2283c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x0000000102d5cc1c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 313568
+4   chromedriver                        0x0000000102d58a50 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 296724
+5   chromedriver                        0x0000000102d54b7c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 280640
+6   chromedriver                        0x0000000102d9a3b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 565372
+7   chromedriver                        0x0000000102d99de8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 563884
+8   chromedriver                        0x0000000102d6007c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+9   chromedriver                        0x0000000103206884 cxxbridge1$str$ptr + 2831984
+10  chromedriver                        0x0000000103209fcc cxxbridge1$str$ptr + 2846136
+11  chromedriver                        0x00000001031eb578 cxxbridge1$str$ptr + 2720612
+12  chromedriver                        0x000000010320a850 cxxbridge1$str$ptr + 2848316
+13  chromedriver                        0x00000001031db640 cxxbridge1$str$ptr + 2655276
+14  chromedriver                        0x000000010322e194 cxxbridge1$str$ptr + 2994048
+15  chromedriver                        0x000000010322e310 cxxbridge1$str$ptr + 2994428
+16  chromedriver                        0x000000010323f85c cxxbridge1$str$ptr + 3065416
+17  libsystem_pthread.dylib             0x000000019579bbc8 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000195796b80 thread_start + 8
+
+2026-02-11 10:38:56,025 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: session not created
+from disconnected: unable to connect to renderer; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x000000010120b928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000101203c04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x0000000100ce683c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x0000000100d20c1c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 313568
+4   chromedriver                        0x0000000100d1ca50 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 296724
+5   chromedriver                        0x0000000100d18b7c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 280640
+6   chromedriver                        0x0000000100d5e3b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 565372
+7   chromedriver                        0x0000000100d5dde8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 563884
+8   chromedriver                        0x0000000100d2407c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+9   chromedriver                        0x00000001011ca884 cxxbridge1$str$ptr + 2831984
+10  chromedriver                        0x00000001011cdfcc cxxbridge1$str$ptr + 2846136
+11  chromedriver                        0x00000001011af578 cxxbridge1$str$ptr + 2720612
+12  chromedriver                        0x00000001011ce850 cxxbridge1$str$ptr + 2848316
+13  chromedriver                        0x000000010119f640 cxxbridge1$str$ptr + 2655276
+14  chromedriver                        0x00000001011f2194 cxxbridge1$str$ptr + 2994048
+15  chromedriver                        0x00000001011f2310 cxxbridge1$str$ptr + 2994428
+16  chromedriver                        0x000000010120385c cxxbridge1$str$ptr + 3065416
+17  libsystem_pthread.dylib             0x000000019579bbc8 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000195796b80 thread_start + 8
+
+2026-02-11 10:44:03,895 [ERROR] kbb_scraper.drivers.driver_setup:66: Failed to setup WebDriver: Message: session not created
+from disconnected: unable to connect to renderer; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+0   chromedriver                        0x0000000103347928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x000000010333fc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x0000000102e2283c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x0000000102e5cc1c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 313568
+4   chromedriver                        0x0000000102e58a50 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 296724
+5   chromedriver                        0x0000000102e54b7c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 280640
+6   chromedriver                        0x0000000102e9a3b8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 565372
+7   chromedriver                        0x0000000102e99de8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 563884
+8   chromedriver                        0x0000000102e6007c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+9   chromedriver                        0x0000000103306884 cxxbridge1$str$ptr + 2831984
+10  chromedriver                        0x0000000103309fcc cxxbridge1$str$ptr + 2846136
+11  chromedriver                        0x00000001032eb578 cxxbridge1$str$ptr + 2720612
+12  chromedriver                        0x000000010330a850 cxxbridge1$str$ptr + 2848316
+13  chromedriver                        0x00000001032db640 cxxbridge1$str$ptr + 2655276
+14  chromedriver                        0x000000010332e194 cxxbridge1$str$ptr + 2994048
+15  chromedriver                        0x000000010332e310 cxxbridge1$str$ptr + 2994428
+16  chromedriver                        0x000000010333f85c cxxbridge1$str$ptr + 3065416
+17  libsystem_pthread.dylib             0x000000019579bbc8 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000195796b80 thread_start + 8
+
