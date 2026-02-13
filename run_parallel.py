@@ -101,8 +101,8 @@ def launch_workers(batch_paths: list[Path], extra_flags: list[str],
         log_file = BATCH_DIR / f"worker_{i}.log"
         fh = open(log_file, "w")
         print(f"  Worker {i}/{len(batch_paths)}: {path.name}")
-        print(f"    output → {worker_dir}")
-        print(f"    log    → {log_file}")
+        print(f"    output -> {worker_dir}")
+        print(f"    log    -> {log_file}")
         proc = subprocess.Popen(cmd, stdout=fh, stderr=subprocess.STDOUT)
         procs.append((i, proc, fh))
 
@@ -157,7 +157,7 @@ def _merge_one_csv(pattern: str, dest: Path, label: str):
         writer.writeheader()
         writer.writerows(all_rows)
 
-    print(f"  {label}: {len(all_rows)} rows → {dest}")
+    print(f"  {label}: {len(all_rows)} rows -> {dest}")
 
 
 def merge_csv_files():
@@ -175,7 +175,7 @@ def merge_raw_json_files():
     FINAL_RAW.mkdir(parents=True, exist_ok=True)
     worker_raw_dirs = sorted(WORKERS_DIR.glob("worker_*/raw"))
 
-    review_files: dict[str, list[Path]] = {}  # filename → [paths]
+    review_files: dict[str, list[Path]] = {}  # filename -> [paths]
     other_files: list[Path] = []
 
     for raw_dir in worker_raw_dirs:
@@ -213,7 +213,7 @@ def merge_raw_json_files():
         shutil.copy2(src, dest)
 
     print(f"  Raw:     {merged_reviews} review files merged, "
-          f"{len(other_files)} other files copied → {FINAL_RAW}")
+          f"{len(other_files)} other files copied -> {FINAL_RAW}")
 
 
 def merge_4table_files():
@@ -227,7 +227,7 @@ def merge_4table_files():
         dest = FINAL_4TABLE / src.name
         shutil.copy2(src, dest)
 
-    print(f"  4-table: {len(worker_4tables)} files → {FINAL_4TABLE}")
+    print(f"  4-table: {len(worker_4tables)} files -> {FINAL_4TABLE}")
 
 
 def merge_all():
