@@ -17,6 +17,29 @@ from kbb_scraper.drivers import DriverManager
 
 logger = logging.getLogger(__name__)
 
+# Patterns that indicate the page is a block/CAPTCHA rather than real content
+_BLOCK_INDICATORS = [
+    "access denied",
+    "please verify you are a human",
+    "are you a robot",
+    "captcha",
+    "unusual traffic",
+    "too many requests",
+    "rate limit",
+    "blocked",
+    "security check",
+    "pardon our interruption",
+    "just a moment",           # Cloudflare challenge
+    "checking your browser",   # Cloudflare challenge
+    "enable javascript and cookies",
+]
+
+
+def _is_blocked(page_source: str, title: str) -> bool:
+    """Return True if the page looks like a CAPTCHA / block page."""
+    combined = (title + " " + page_source[:5000]).lower()
+    return any(indicator in combined for indicator in _BLOCK_INDICATORS)
+
 
 class KBBResearchScraper:
     """Scraper for KBB research data with support for multiple body types"""
@@ -26,8 +49,15 @@ class KBBResearchScraper:
         self._driver_manager = DriverManager(headless=headless)
         self.driver = self._driver_manager.setup_driver()
         
-    def navigate_to_car_model(self, make: str, model: str, year: str) -> bool:
-        """Navigate to the KBB page for a specific car model"""
+    def navigate_to_car_model(self, make: str, model: str, year: str) -> str:
+        """Navigate to the KBB page for a specific car model.
+
+        Returns:
+            "specs"     - normal specs comparison page loaded
+            "overview"  - redirected to overview page (no /specs/ in URL)
+            "not_found" - car does not exist (404 or no content)
+            "blocked"   - CAPTCHA or rate-limit page detected
+        """
         url = f"https://www.kbb.com/{make.lower()}/{model.lower()}/{year}/specs/"
         logger.info(f"Navigating to: {url}")
 
@@ -35,15 +65,27 @@ class KBBResearchScraper:
             self.driver.get(url)
             time.sleep(3)  # Initial page load
 
+            # Check for CAPTCHA / block pages BEFORE other checks
+            if _is_blocked(self.driver.page_source, self.driver.title):
+                logger.error(f"BLOCKED / CAPTCHA detected at: {url}")
+                self._save_debug_html(f"blocked_{datetime.now().strftime('%Y%m%d_%H%M%S')}.html")
+                return "blocked"
+
             # Check if page loaded successfully
             if "404" in self.driver.title or "Page Not Found" in self.driver.page_source:
                 logger.error(f"Page not found: {url}")
-                return False
+                return "not_found"
 
             # Wait for main content to load
             WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((By.TAG_NAME, "body"))
             )
+
+            # Check if we were redirected away from /specs/
+            current_url = self.driver.current_url
+            if not current_url.rstrip('/').endswith('/specs'):
+                logger.info(f"Redirected to overview page: {current_url}")
+                return "overview"
 
             # Wait for specs table to be present (primary indicator of loaded content)
             try:
@@ -58,13 +100,14 @@ class KBBResearchScraper:
                 if tables:
                     logger.info(f"Found {len(tables)} table(s) on page")
                 else:
-                    logger.warning("No tables found on page")
+                    logger.error(f"No tables found on page - car does not exist: {year} {make} {model}")
+                    return "not_found"
 
-            return True
+            return "specs"
 
         except Exception as e:
             logger.error(f"Error navigating to {url}: {e}")
-            return False
+            return "not_found"
     
     def get_all_body_types(self, wait_time: int = 10) -> List[str]:
         """Get ALL available body types for the current model - FIXED"""
@@ -574,6 +617,197 @@ class KBBResearchScraper:
 
         return data
     
+    # ------------------------------------------------------------------ #
+    #  Fallback: scrape from overview page Styles section
+    # ------------------------------------------------------------------ #
+
+    def _get_style_links_from_overview(self) -> List[Dict[str, str]]:
+        """Extract style names and URLs from the overview page's Styles section.
+
+        Returns list of dicts: [{'name': 'LX Sedan 4D', 'url': 'https://...'}, ...]
+        """
+        styles = []
+        try:
+            soup = BeautifulSoup(self.driver.page_source, "html.parser")
+            seen_urls = set()
+
+            for a_tag in soup.find_all("a", href=True):
+                href = a_tag["href"]
+                if "/styles/" not in href:
+                    continue
+
+                name = a_tag.get_text(strip=True)
+                if not name or len(name) < 3:
+                    continue
+
+                # Build full URL if relative
+                if href.startswith("/"):
+                    full_url = f"https://www.kbb.com{href}"
+                else:
+                    full_url = href
+
+                if full_url in seen_urls:
+                    continue
+                seen_urls.add(full_url)
+
+                styles.append({"name": name, "url": full_url})
+
+            logger.info(f"Found {len(styles)} style links on overview page")
+            for s in styles:
+                logger.debug(f"  Style: {s['name']} -> {s['url']}")
+
+        except Exception as e:
+            logger.error(f"Error extracting style links from overview: {e}")
+
+        return styles
+
+    def _scrape_single_style_specs(self, style_url: str) -> List[Dict[str, Any]]:
+        """Navigate to a single style's page and scrape its specifications.
+
+        Returns list of dicts: [{'label': 'Horsepower', 'values': ['220']}, ...]
+        Each spec has exactly one value since this is a single-style page.
+        """
+        specs = []
+        try:
+            logger.info(f"Navigating to style page: {style_url}")
+            self.driver.get(style_url)
+            time.sleep(3)
+
+            # Wait for body
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.TAG_NAME, "body"))
+            )
+
+            # Find a spec table — same approach as get_specifications()
+            spec_table = None
+            try:
+                spec_table = self.driver.find_element(By.ID, "compare-trim-tables")
+                logger.info("Found compare-trim-tables on style page")
+            except NoSuchElementException:
+                tables = self.driver.find_elements(By.TAG_NAME, "table")
+                if tables:
+                    spec_table = max(tables, key=lambda t: len(t.find_elements(By.TAG_NAME, "tr")))
+                    logger.info("Using largest table on style page")
+
+            if not spec_table:
+                logger.warning(f"No spec table found on style page: {style_url}")
+                return specs
+
+            table_html = spec_table.get_attribute("innerHTML")
+            soup = BeautifulSoup(table_html, "html.parser")
+            rows = soup.find_all("tr")
+
+            skip_labels = {'specifications', 'features', 'compare', 'save', 'see pricing', ''}
+            skip_prefixes = ('save ', 'see ')
+
+            for row in rows:
+                try:
+                    th_cells = row.find_all("th")
+                    cells = row.find_all("td")
+
+                    if th_cells and cells:
+                        all_cells = th_cells + cells
+                    elif cells:
+                        all_cells = cells
+                    elif th_cells:
+                        all_cells = th_cells
+                    else:
+                        continue
+
+                    cell_texts = [c.get_text(strip=True) for c in all_cells]
+                    if len(cell_texts) < 2:
+                        continue
+
+                    spec_name = None
+                    value_start_idx = 0
+                    for idx, text in enumerate(cell_texts):
+                        if text and len(text) > 1:
+                            spec_name = text
+                            value_start_idx = idx + 1
+                            break
+
+                    if not spec_name:
+                        continue
+
+                    name_lower = spec_name.lower()
+                    if name_lower in skip_labels or name_lower.startswith(skip_prefixes):
+                        continue
+
+                    # Take only the first non-empty value
+                    value = "N/A"
+                    for text in cell_texts[value_start_idx:]:
+                        if text:
+                            value = text
+                            break
+
+                    specs.append({
+                        'label': spec_name,
+                        'values': [value]
+                    })
+
+                except Exception as e:
+                    logger.debug(f"Error parsing style spec row: {e}")
+                    continue
+
+            logger.info(f"Extracted {len(specs)} specs from style page")
+
+        except Exception as e:
+            logger.error(f"Error scraping style page {style_url}: {e}")
+            logger.debug(traceback.format_exc())
+
+        return specs
+
+    def _scrape_overview_styles(self, make: str, model: str, year: str) -> Dict[str, Any]:
+        """Fallback: scrape specs from the overview page's Styles section.
+
+        When /specs/ redirects to the overview page, find style links,
+        scrape specs from the first style, and use them as shared data
+        for all trims.
+
+        Returns bodytypes dict: {'Default': {'trim_names': [...], 'specifications': [...]}}
+        """
+        style_links = self._get_style_links_from_overview()
+
+        if not style_links:
+            logger.warning(f"No style links found on overview for {year} {make} {model}")
+            return {}
+
+        # Collect all style/trim names
+        style_names = [s['name'] for s in style_links]
+        logger.info(f"Styles found: {style_names}")
+
+        # Scrape specs from the first style page (used as mutual/shared data)
+        specs = []
+        for style in style_links:
+            time.sleep(settings.RESEARCH_CONFIG['delay_between_requests'])
+            specs = self._scrape_single_style_specs(style['url'])
+            if specs:
+                logger.info(f"Got specs from style: {style['name']}")
+                break
+            logger.warning(f"No specs from style: {style['name']}, trying next...")
+
+        if not specs:
+            logger.warning(f"Could not get specs from any style for {year} {make} {model}")
+            return {}
+
+        # Replicate the single-style specs across all trims (mutual static data)
+        num_trims = len(style_names)
+        expanded_specs = []
+        for spec in specs:
+            expanded_specs.append({
+                'label': spec['label'],
+                'values': spec['values'] * num_trims
+            })
+
+        logger.info(f"Built fallback data: {num_trims} trims, {len(expanded_specs)} specs (mutual)")
+
+        return {
+            'Default': {
+                'trim_names': style_names,
+                'specifications': expanded_specs
+            }
+        }
+
     def scrape_car_model(self, make: str, model: str, year: str) -> Dict[str, Any]:
         """Main method to scrape all data for a car model with multiple body types"""
         all_data = {
@@ -585,9 +819,25 @@ class KBBResearchScraper:
         }
 
         # Navigate to the model page
-        if not self.navigate_to_car_model(make, model, year):
+        nav_result = self.navigate_to_car_model(make, model, year)
+
+        if nav_result == "not_found":
+            logger.warning(f"Car not found: {year} {make} {model}")
             return all_data
 
+        if nav_result == "blocked":
+            logger.error(f"Blocked by KBB for {year} {make} {model} - "
+                         "consider increasing delay or using proxies")
+            all_data['blocked'] = True
+            return all_data
+
+        if nav_result == "overview":
+            logger.info(f"No specs comparison page -- using Styles fallback for {year} {make} {model}")
+            all_data['bodytypes'] = self._scrape_overview_styles(make, model, year)
+            self.save_results(all_data, make, model, year)
+            return all_data
+
+        # nav_result == "specs" -- normal path
         # Get all body types
         body_types = self.get_all_body_types()
 
@@ -608,7 +858,7 @@ class KBBResearchScraper:
 
             if data['trim_names'] or data['specifications']:
                 all_data['bodytypes'][first_body_type] = data
-                logger.info(f"✓ Successfully scraped {first_body_type}")
+                logger.info(f"[OK] Successfully scraped {first_body_type}")
             else:
                 logger.warning(f"No data for body type: {first_body_type}")
 
@@ -623,7 +873,7 @@ class KBBResearchScraper:
 
                     if data['trim_names'] or data['specifications']:
                         all_data['bodytypes'][body_type] = data
-                        logger.info(f"✓ Successfully scraped {body_type}")
+                        logger.info(f"[OK] Successfully scraped {body_type}")
                     else:
                         logger.warning(f"No data for body type: {body_type}")
                 else:

@@ -5,6 +5,7 @@ Main script for KBB research data collection - Fixed summary logging
 import argparse
 import logging
 import sys
+import time
 import traceback
 from pathlib import Path
 from typing import Dict, Any, List
@@ -14,6 +15,13 @@ from kbb_scraper.utils.helpers import setup_logging, extract_car_info_from_url
 from kbb_scraper.config import settings, get_scrape_combinations, get_stats
 
 logger = setup_logging()
+
+# How many models a single driver processes before restart (avoids memory leaks)
+DRIVER_RESTART_INTERVAL = 100
+
+# Per-model retry settings
+MAX_RETRIES = 2
+RETRY_BASE_DELAY = 10  # seconds — doubles on each retry
 
 def validate_and_summarize_results(results: Dict[str, Any], make: str, model: str, year: str) -> bool:
     """Validate scraped data and print summary - FIXED"""
@@ -203,8 +211,21 @@ def _recreate_scraper(scraper, headless, with_reviews):
     return new_scraper, new_reviews
 
 
+def _warn_if_onedrive():
+    """Warn if the project is running from an OneDrive-synced directory."""
+    cwd = str(Path.cwd()).lower()
+    if "onedrive" in cwd:
+        logger.warning(
+            "Project is inside a OneDrive-synced directory. "
+            "File locking may cause I/O errors. Consider pausing "
+            "OneDrive sync or moving the project elsewhere."
+        )
+
+
 def main():
     """Main entry point"""
+    _warn_if_onedrive()
+
     parser = argparse.ArgumentParser(description='KBB Research Data Scraper')
     parser.add_argument('--make', help='Car make (e.g., Toyota)')
     parser.add_argument('--model', help='Car model (e.g., Camry)')
@@ -295,6 +316,7 @@ def main():
         successful = 0
         failed = 0
         failed_models = []
+        models_since_restart = 0
 
         scraper = KBBResearchScraper(headless=headless)
         reviews_scraper = KBBReviewsScraper(driver=scraper.driver) if args.with_reviews else None
@@ -310,30 +332,69 @@ def main():
                     failed += 1
                     continue
 
+                # Periodic driver restart to prevent memory leaks
+                models_since_restart += 1
+                if models_since_restart >= DRIVER_RESTART_INTERVAL:
+                    logger.info(f"Restarting driver after {DRIVER_RESTART_INTERVAL} models (memory cleanup)")
+                    scraper, reviews_scraper = _recreate_scraper(
+                        scraper, headless, args.with_reviews
+                    )
+                    models_since_restart = 0
+
                 logger.info(f"[{i}/{len(models)}] Scraping {year} {make} {model}")
 
-                try:
-                    result = scraper.scrape_car_model(make, model, year)
+                # Per-model retry with exponential backoff
+                model_ok = False
+                for attempt in range(MAX_RETRIES + 1):
+                    try:
+                        if attempt > 0:
+                            delay = RETRY_BASE_DELAY * (2 ** (attempt - 1))
+                            logger.info(f"  Retry {attempt}/{MAX_RETRIES} for {year} {make} {model} "
+                                        f"(waiting {delay}s)")
+                            time.sleep(delay)
+                            if not _is_driver_alive(scraper):
+                                scraper, reviews_scraper = _recreate_scraper(
+                                    scraper, headless, args.with_reviews
+                                )
+                                models_since_restart = 0
 
-                    if validate_and_summarize_results(result, make, model, year):
-                        successful += 1
-                        if args.export_db and db_output_dir:
-                            export_to_4table_format(result, make, model, year, db_output_dir)
-                        if reviews_scraper:
-                            reviews_scraper.scrape_reviews(make, model, year)
-                    else:
-                        failed += 1
-                        failed_models.append(f"{year} {make} {model}")
+                        result = scraper.scrape_car_model(make, model, year)
 
-                except Exception as e:
-                    logger.error(f"Failed to scrape {year} {make} {model}: {e}")
+                        # Check if blocked — no point retrying immediately
+                        if result.get('blocked'):
+                            logger.warning(f"  Blocked on attempt {attempt + 1} — "
+                                           f"backing off longer")
+                            time.sleep(30 * (attempt + 1))
+                            continue
+
+                        if validate_and_summarize_results(result, make, model, year):
+                            successful += 1
+                            model_ok = True
+                            if args.export_db and db_output_dir:
+                                export_to_4table_format(result, make, model, year, db_output_dir)
+                            if reviews_scraper:
+                                reviews_scraper.scrape_reviews(make, model, year)
+                            break
+                        else:
+                            if attempt == MAX_RETRIES:
+                                break
+                            # Might be a transient page load issue — retry
+                            continue
+
+                    except Exception as e:
+                        logger.error(f"Failed to scrape {year} {make} {model} "
+                                     f"(attempt {attempt + 1}): {e}")
+                        if not _is_driver_alive(scraper):
+                            scraper, reviews_scraper = _recreate_scraper(
+                                scraper, headless, args.with_reviews
+                            )
+                            models_since_restart = 0
+                        if attempt == MAX_RETRIES:
+                            break
+
+                if not model_ok:
                     failed += 1
                     failed_models.append(f"{year} {make} {model}")
-
-                    if not _is_driver_alive(scraper):
-                        scraper, reviews_scraper = _recreate_scraper(
-                            scraper, headless, args.with_reviews
-                        )
 
         finally:
             scraper.close()
@@ -370,38 +431,75 @@ def main():
         successful = 0
         failed = 0
         failed_models = []
+        models_since_restart = 0
 
         scraper = KBBResearchScraper(headless=headless)
         reviews_scraper = KBBReviewsScraper(driver=scraper.driver) if args.with_reviews else None
 
         try:
             for i, (make, model, year) in enumerate(combinations, 1):
+                # Periodic driver restart to prevent memory leaks
+                models_since_restart += 1
+                if models_since_restart >= DRIVER_RESTART_INTERVAL:
+                    logger.info(f"Restarting driver after {DRIVER_RESTART_INTERVAL} models (memory cleanup)")
+                    scraper, reviews_scraper = _recreate_scraper(
+                        scraper, headless, args.with_reviews
+                    )
+                    models_since_restart = 0
+
                 logger.info(f"[{i}/{len(combinations)}] Scraping {year} {make} {model}")
 
-                try:
-                    result = scraper.scrape_car_model(make, model, year)
+                # Per-model retry with exponential backoff
+                model_ok = False
+                for attempt in range(MAX_RETRIES + 1):
+                    try:
+                        if attempt > 0:
+                            delay = RETRY_BASE_DELAY * (2 ** (attempt - 1))
+                            logger.info(f"  Retry {attempt}/{MAX_RETRIES} for {year} {make} {model} "
+                                        f"(waiting {delay}s)")
+                            time.sleep(delay)
+                            if not _is_driver_alive(scraper):
+                                scraper, reviews_scraper = _recreate_scraper(
+                                    scraper, headless, args.with_reviews
+                                )
+                                models_since_restart = 0
 
-                    if validate_and_summarize_results(result, make, model, year):
-                        successful += 1
-                        # Export to 4-table format if requested
-                        if args.export_db and db_output_dir:
-                            export_to_4table_format(result, make, model, year, db_output_dir)
-                        # Scrape reviews with same driver session
-                        if reviews_scraper:
-                            reviews_scraper.scrape_reviews(make, model, year)
-                    else:
-                        failed += 1
-                        failed_models.append(f"{year} {make} {model}")
+                        result = scraper.scrape_car_model(make, model, year)
 
-                except Exception as e:
-                    logger.error(f"Failed to scrape {year} {make} {model}: {e}")
+                        # Check if blocked
+                        if result.get('blocked'):
+                            logger.warning(f"  Blocked on attempt {attempt + 1} — "
+                                           f"backing off longer")
+                            time.sleep(30 * (attempt + 1))
+                            continue
+
+                        if validate_and_summarize_results(result, make, model, year):
+                            successful += 1
+                            model_ok = True
+                            if args.export_db and db_output_dir:
+                                export_to_4table_format(result, make, model, year, db_output_dir)
+                            if reviews_scraper:
+                                reviews_scraper.scrape_reviews(make, model, year)
+                            break
+                        else:
+                            if attempt == MAX_RETRIES:
+                                break
+                            continue
+
+                    except Exception as e:
+                        logger.error(f"Failed to scrape {year} {make} {model} "
+                                     f"(attempt {attempt + 1}): {e}")
+                        if not _is_driver_alive(scraper):
+                            scraper, reviews_scraper = _recreate_scraper(
+                                scraper, headless, args.with_reviews
+                            )
+                            models_since_restart = 0
+                        if attempt == MAX_RETRIES:
+                            break
+
+                if not model_ok:
                     failed += 1
                     failed_models.append(f"{year} {make} {model}")
-
-                    if not _is_driver_alive(scraper):
-                        scraper, reviews_scraper = _recreate_scraper(
-                            scraper, headless, args.with_reviews
-                        )
 
         finally:
             scraper.close()

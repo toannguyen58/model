@@ -109,6 +109,23 @@ uv run python run_parallel.py --test --workers 4 --run --no-headless
 
 
 ================================================================================
+  RETRY REMAINING (skip already-scraped cars)
+================================================================================
+
+# Step 1: Generate the remaining combos list (subtracts successful from full dict)
+uv run python gen_remaining.py
+
+# Step 2: Run remaining combos with 4 parallel workers
+uv run python run_parallel.py --remaining --workers 4 --run
+
+# With reviews + DB export
+uv run python run_parallel.py --remaining --workers 4 --run --with-reviews --export-db
+
+# Dry run (generate batch files only, don't launch)
+uv run python run_parallel.py --remaining --workers 4
+
+
+================================================================================
   OUTPUT FILES
 ================================================================================
 
@@ -168,7 +185,72 @@ Logs:
 Parallel runner (run_parallel.py) additional flags:
   --workers N         Number of parallel workers (default: 4)
   --run               Launch workers immediately
+  --remaining         Use data/remaining_combos.json (retry un-scraped cars only)
   --merge-only        Merge existing worker outputs only
+
+
+================================================================================
+  TESTS (188 tests covering all outcomes)
+================================================================================
+
+# Run all tests
+uv run python -m pytest tests/test_all_outcomes.py -v
+
+# Run a specific test category
+uv run python -m pytest tests/test_all_outcomes.py -v -k "TestParseFuelEconomy"
+uv run python -m pytest tests/test_all_outcomes.py -v -k "TestBlockDetection"
+uv run python -m pytest tests/test_all_outcomes.py -v -k "TestCsvExporter"
+uv run python -m pytest tests/test_all_outcomes.py -v -k "TestSchemaTransformer"
+uv run python -m pytest tests/test_all_outcomes.py -v -k "TestEdgeCases"
+
+# Run with short output (just pass/fail)
+uv run python -m pytest tests/test_all_outcomes.py
+
+# Run and stop on first failure
+uv run python -m pytest tests/test_all_outcomes.py -x
+
+Test categories (13):
+  TestParseHorsepower, TestParseTorque, TestParseZeroToSixty,
+  TestParseTopSpeed, TestParseFuelEconomy, TestParseWeight,
+  TestParseDimension, TestParseVolume, TestParsePrice,
+  TestFeatureToBool, TestGenerateVehicleId, TestCleanTrimName
+    -> Value parsing: all formats, None/empty, EV kWh conversion
+
+  TestCsvExporterFlatten, TestCsvExporterDedup, TestFixedColumnsSchema
+    -> CSV: flatten, dedup, label aliases, trim-name rejection, schema
+
+  TestBlockDetection
+    -> CAPTCHA/Cloudflare/rate-limit detection (13 indicators)
+
+  TestExtractCarInfoFromUrl
+    -> URL parsing: hyphens (CR-V, F-150, Range-Rover-Sport)
+
+  TestSanitizeFilename, TestValidateData
+    -> Helpers: filename cleaning, data validation
+
+  TestVehicleConfig, TestScrapeCombinatons, TestGetStats
+    -> Config: 38 brands, year filtering, combo generation
+
+  TestConsumerReview, TestExpertReview, TestReviewData, TestFourTableDataset
+    -> Data models: serialization, defaults, 4-table structure
+
+  TestSchemaTransformer
+    -> Transform: raw data to 4-table, features, padding, multi-bodytype
+
+  TestReviewsFlatten
+    -> Reviews: CSV flatten logic, column schema
+
+  TestSplitCombinations, TestWriteBatchFiles
+    -> Parallel: split, batch file I/O, cleanup
+
+  TestValidateAndSummarize, TestMainConstants, TestDriverAlive
+    -> Main: result validation, retry constants, driver health check
+
+  TestEdgeCases
+    -> Cross-cutting: EV pipeline, CSV roundtrip, vehicle ID uniqueness
+
+  TestMergeCsvFiles, TestMergeRawJson
+    -> Merge: worker CSV merge, review JSON deep merge
 
 
 ================================================================================
@@ -180,7 +262,7 @@ YEAR AVAILABILITY
   unreleased model/year combos are automatically skipped.  Examples:
     - Tesla Cybertruck:  2024 only
     - Ford Focus:        2000-2018 (discontinued)
-    - Tesla Model-3:     2017-2024`
+    - Tesla Model-3:     2017-2024
     - BMW M4:            2015-2024
     - Dodge Dart:        2013-2016
 

@@ -20,6 +20,8 @@ Usage:
 import argparse
 import csv
 import json
+import os
+import signal
 import shutil
 import subprocess
 import sys
@@ -28,6 +30,9 @@ from math import ceil
 from pathlib import Path
 
 from kbb_scraper.config import get_scrape_combinations, get_stats
+
+# Global list so the signal handler can access running worker processes
+_active_procs: list = []
 
 
 BATCH_DIR = Path("data/batches")
@@ -44,6 +49,8 @@ FINAL_4TABLE = Path("data/processed/4table")
 
 def split_combinations(combinations: list, num_workers: int) -> list[list]:
     """Split combinations into roughly equal chunks."""
+    if not combinations:
+        return []
     chunk_size = ceil(len(combinations) / num_workers)
     return [combinations[i : i + chunk_size] for i in range(0, len(combinations), chunk_size)]
 
@@ -70,6 +77,34 @@ def write_batch_files(chunks: list[list], test_mode: bool) -> list[Path]:
 #  Launch workers (each in its own output dir)
 # ------------------------------------------------------------------ #
 
+def _shutdown_handler(signum, frame):
+    """Gracefully terminate all running worker processes and their Chrome children."""
+    sig_name = signal.Signals(signum).name if hasattr(signal, 'Signals') else str(signum)
+    print(f"\n[!] Received {sig_name} - shutting down {len(_active_procs)} worker(s)...")
+
+    for i, proc, fh in _active_procs:
+        try:
+            proc.terminate()
+        except Exception:
+            pass
+
+    # Give workers a moment to clean up, then force kill
+    time.sleep(3)
+    for i, proc, fh in _active_procs:
+        try:
+            if proc.poll() is None:
+                proc.kill()
+        except Exception:
+            pass
+        try:
+            fh.close()
+        except Exception:
+            pass
+
+    print("[!] All workers terminated.")
+    sys.exit(1)
+
+
 def launch_workers(batch_paths: list[Path], extra_flags: list[str],
                     stagger_seconds: int = 5) -> int:
     """Launch one scraper process per batch file and wait for all to finish.
@@ -81,6 +116,12 @@ def launch_workers(batch_paths: list[Path], extra_flags: list[str],
     ChromeDriver binary before subsequent workers attempt to use it
     (avoids webdriver-manager race conditions on the shared ~/.wdm/ cache).
     """
+    global _active_procs
+
+    # Register signal handlers for graceful shutdown
+    signal.signal(signal.SIGINT, _shutdown_handler)
+    signal.signal(signal.SIGTERM, _shutdown_handler)
+
     # Clean old worker dirs
     if WORKERS_DIR.exists():
         shutil.rmtree(WORKERS_DIR)
@@ -111,6 +152,9 @@ def launch_workers(batch_paths: list[Path], extra_flags: list[str],
             print(f"    (waiting {stagger_seconds}s before next worker...)")
             time.sleep(stagger_seconds)
 
+    # Track globally so signal handler can clean up
+    _active_procs = procs
+
     print(f"\n{len(procs)} workers running. Waiting for all to finish...\n")
 
     failed = 0
@@ -122,6 +166,7 @@ def launch_workers(batch_paths: list[Path], extra_flags: list[str],
         if proc.returncode != 0:
             failed += 1
 
+    _active_procs = []
     return failed
 
 
@@ -243,7 +288,19 @@ def merge_all():
 #  Main
 # ------------------------------------------------------------------ #
 
+def _warn_if_onedrive():
+    """Warn if the project is running from an OneDrive-synced directory."""
+    cwd = str(Path.cwd()).lower()
+    if "onedrive" in cwd:
+        print("WARNING: This project is inside a OneDrive-synced directory.")
+        print("  OneDrive file locking can cause I/O errors during parallel writes.")
+        print("  Consider pausing OneDrive sync or moving the project elsewhere.")
+        print()
+
+
 def main():
+    _warn_if_onedrive()
+
     parser = argparse.ArgumentParser(
         description="Split & run KBB scraper in parallel (conflict-safe)"
     )
@@ -252,6 +309,8 @@ def main():
                       help="Use test dictionary (5 brands, 15 models, 3 years)")
     mode.add_argument("--batch", action="store_true",
                       help="Use full dictionary (38 brands, 412 models, 25 years)")
+    mode.add_argument("--remaining", action="store_true",
+                      help="Use data/remaining_combos.json (retry only un-scraped cars)")
     mode.add_argument("--merge-only", action="store_true",
                       help="Skip scraping — only merge existing worker outputs")
 
@@ -273,21 +332,37 @@ def main():
         merge_all()
         return
 
-    test_mode = args.test
+    if args.remaining:
+        # Load remaining combos from JSON
+        remaining_path = Path("data/remaining_combos.json")
+        if not remaining_path.exists():
+            print(f"ERROR: {remaining_path} not found. Run gen_remaining.py first.")
+            sys.exit(1)
+        with open(remaining_path) as f:
+            records = json.load(f)
+        combinations = [(r["make"], r["model"], r["year"]) for r in records]
+        mode_name = "REMAINING"
+        print(f"=== {mode_name} mode ===")
+        print(f"  Loaded {len(combinations)} un-scraped combinations from {remaining_path}")
+        print(f"  Workers: {args.workers}")
+        print()
+        test_mode = False
+    else:
+        test_mode = args.test
 
-    # Show stats
-    stats = get_stats(test_mode)
-    mode_name = "TEST" if test_mode else "FULL"
-    print(f"=== {mode_name} mode ===")
-    print(f"  Brands: {stats['brands']}")
-    print(f"  Models: {stats['total_models']}")
-    print(f"  Years:  {stats['year_range']}")
-    print(f"  Total combinations: {stats['total_combinations']}")
-    print(f"  Workers: {args.workers}")
-    print()
+        # Show stats
+        stats = get_stats(test_mode)
+        mode_name = "TEST" if test_mode else "FULL"
+        print(f"=== {mode_name} mode ===")
+        print(f"  Brands: {stats['brands']}")
+        print(f"  Models: {stats['total_models']}")
+        print(f"  Years:  {stats['year_range']}")
+        print(f"  Total combinations: {stats['total_combinations']}")
+        print(f"  Workers: {args.workers}")
+        print()
 
-    # Generate combinations and split
-    combinations = get_scrape_combinations(test_mode)
+        # Generate combinations and split
+        combinations = get_scrape_combinations(test_mode)
     chunks = split_combinations(combinations, args.workers)
 
     print(f"Splitting {len(combinations)} combinations into {len(chunks)} batch files:")

@@ -37,16 +37,27 @@ def sanitize_filename(filename: str) -> str:
     return filename.strip('._ ')
 
 def extract_car_info_from_url(url: str) -> Dict[str, str]:
-    """Extract make, model, year from KBB URL"""
+    """Extract make, model, year from KBB URL.
+
+    Preserves hyphens in model names (e.g. CR-V stays CR-V, not Cr V).
+    Capitalises each hyphen-separated segment independently.
+    """
     import re
 
-    pattern = r'/([^/]+)/([^/]+)/(\d{4})/specs/'
+    pattern = r'/([^/]+)/([^/]+)/(\d{4})(?:/specs/?|/?$)'
     match = re.search(pattern, url)
 
     if match:
+        def _title_keep_hyphens(slug: str) -> str:
+            """'cr-v' -> 'CR-V', 'grand-cherokee' -> 'Grand-Cherokee'."""
+            return '-'.join(
+                part.upper() if len(part) <= 2 else part.title()
+                for part in slug.split('-')
+            )
+
         return {
-            'make': match.group(1).replace('-', ' ').title(),
-            'model': match.group(2).replace('-', ' ').title(),
+            'make': _title_keep_hyphens(match.group(1)),
+            'model': _title_keep_hyphens(match.group(2)),
             'year': match.group(3)
         }
 

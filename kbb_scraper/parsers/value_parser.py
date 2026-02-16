@@ -79,6 +79,12 @@ def parse_fuel_economy(value: str) -> Tuple[Optional[int], Optional[int], Option
     """
     Parse fuel economy from strings like "City 26/Hwy 35/Comb 29 MPG".
 
+    Also handles electric vehicle formats:
+      - "City 131/Hwy 117/Comb 124 MPGe"
+      - "100 MPGe"
+      - "28 kWh/100 mi"  (converted: 3,412 / kWh * 100 ≈ MPGe)
+      - "258 mi range" (stored as combined only)
+
     Returns a tuple of (city, highway, combined) as integers.
     Any unparseable value returns None in that position.
     """
@@ -87,7 +93,7 @@ def parse_fuel_economy(value: str) -> Tuple[Optional[int], Optional[int], Option
 
     city, highway, combined = None, None, None
 
-    # Pattern 1: "City XX/Hwy YY/Comb ZZ MPG"
+    # Pattern 1: "City XX/Hwy YY/Comb ZZ MPG(e)"
     city_match = re.search(r'City\s*(\d+)', value, re.IGNORECASE)
     hwy_match = re.search(r'Hwy\s*(\d+)', value, re.IGNORECASE)
     comb_match = re.search(r'Comb(?:ined)?\s*(\d+)', value, re.IGNORECASE)
@@ -99,11 +105,35 @@ def parse_fuel_economy(value: str) -> Tuple[Optional[int], Optional[int], Option
     if comb_match:
         combined = int(comb_match.group(1))
 
-    # Pattern 2: Simple "XX MPG" (assume combined)
-    if city is None and highway is None and combined is None:
-        simple_match = re.match(r'(\d+)\s*(?:mpg)?', value.strip(), re.IGNORECASE)
-        if simple_match:
-            combined = int(simple_match.group(1))
+    if city is not None or highway is not None or combined is not None:
+        return (city, highway, combined)
+
+    # Pattern 2: "XX MPGe" (electric equivalent)
+    mpge_match = re.match(r'(\d+)\s*MPGe', value.strip(), re.IGNORECASE)
+    if mpge_match:
+        combined = int(mpge_match.group(1))
+        return (None, None, combined)
+
+    # Pattern 3: "XX kWh/100 mi" -> approximate MPGe (33.7 kWh per gallon-equivalent)
+    kwh_match = re.match(r'([\d.]+)\s*kWh\s*/\s*100\s*mi', value.strip(), re.IGNORECASE)
+    if kwh_match:
+        kwh_per_100mi = float(kwh_match.group(1))
+        if kwh_per_100mi > 0:
+            combined = int(3370 / kwh_per_100mi)  # 33.7 kWh/gal * 100
+            return (None, None, combined)
+
+    # Pattern 4: Simple "XX MPG" (assume combined)
+    simple_match = re.match(r'(\d+)\s*(?:mpg)\b', value.strip(), re.IGNORECASE)
+    if simple_match:
+        combined = int(simple_match.group(1))
+        return (city, highway, combined)
+
+    # Pattern 5: bare number (only if clearly numeric and reasonable for MPG)
+    bare_match = re.match(r'^(\d+)$', value.strip())
+    if bare_match:
+        num = int(bare_match.group(1))
+        if 5 <= num <= 200:
+            combined = num
 
     return (city, highway, combined)
 

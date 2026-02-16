@@ -62,6 +62,14 @@ FIXED_COLUMNS = [
 
 FIXED_SET = set(FIXED_COLUMNS)
 
+# Labels that are known to be intentionally unmapped (not warnings)
+_KNOWN_UNMAPPED = {
+    'specifications', 'features', 'compare', 'save', 'see pricing', '',
+    'fair market price', 'horsepower', 'torque', 'cargo volume',
+    'curb weight', 'fuel economy',
+}
+_WARNED_LABELS: set = set()  # module-level dedup so each label warns once
+
 # Detect labels that are actually trim names rather than spec/feature names.
 # Trim names contain body-style suffixes like "Sedan 4D", "Coupe 2D", etc.
 _TRIM_NAME_RE = re.compile(
@@ -165,6 +173,14 @@ class CsvExporter:
                     elif label in FIXED_SET:
                         # Raw label IS in the schema — write as-is
                         row[label] = val
+                    else:
+                        # Label is NOT in schema — warn once per label
+                        if label.lower() not in _KNOWN_UNMAPPED and label not in _WARNED_LABELS:
+                            _WARNED_LABELS.add(label)
+                            logger.warning(
+                                f"Unmapped spec label ignored: '{label}' "
+                                f"(KBB may have changed their schema)"
+                            )
 
                 rows.append(row)
 
@@ -174,24 +190,55 @@ class CsvExporter:
     # CSV I/O
     # ------------------------------------------------------------------
 
+    # Key columns that uniquely identify a row
+    _DEDUP_KEYS = ("make", "model", "year", "bodytype", "trim")
+
+    def _load_existing_keys(self) -> set:
+        """Load existing (make, model, year, bodytype, trim) tuples from CSV."""
+        keys: set = set()
+        if not self.csv_path.exists():
+            return keys
+        try:
+            with open(self.csv_path, "r", newline="", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    key = tuple(row.get(k, "") for k in self._DEDUP_KEYS)
+                    keys.add(key)
+        except Exception as e:
+            logger.warning(f"Could not read existing CSV for dedup: {e}")
+        return keys
+
     def append_to_csv(self, rows: List[Dict[str, Any]]) -> None:
-        """Append *rows* to the CSV file using the fixed column schema."""
+        """Append *rows* to the CSV file, skipping duplicates."""
         self.csv_path.parent.mkdir(parents=True, exist_ok=True)
 
-        if self.csv_path.exists():
-            with open(self.csv_path, "a", newline="", encoding="utf-8") as f:
-                writer = csv.DictWriter(
-                    f, fieldnames=FIXED_COLUMNS, extrasaction="ignore"
-                )
-                for row in rows:
-                    writer.writerow(row)
-        else:
-            with open(self.csv_path, "w", newline="", encoding="utf-8") as f:
-                writer = csv.DictWriter(
-                    f, fieldnames=FIXED_COLUMNS, extrasaction="ignore"
-                )
-                writer.writeheader()
-                for row in rows:
-                    writer.writerow(row)
+        existing_keys = self._load_existing_keys()
+        new_rows = []
+        skipped = 0
 
-        logger.info(f"Appended {len(rows)} rows to {self.csv_path}")
+        for row in rows:
+            key = tuple(row.get(k, "") for k in self._DEDUP_KEYS)
+            if key in existing_keys:
+                skipped += 1
+                continue
+            existing_keys.add(key)
+            new_rows.append(row)
+
+        if skipped:
+            logger.info(f"Skipped {skipped} duplicate row(s)")
+
+        if not new_rows:
+            logger.info("No new rows to append (all duplicates)")
+            return
+
+        file_exists = self.csv_path.exists()
+        with open(self.csv_path, "a", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(
+                f, fieldnames=FIXED_COLUMNS, extrasaction="ignore"
+            )
+            if not file_exists:
+                writer.writeheader()
+            for row in new_rows:
+                writer.writerow(row)
+
+        logger.info(f"Appended {len(new_rows)} rows to {self.csv_path}")
